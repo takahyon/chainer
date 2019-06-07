@@ -10,7 +10,7 @@ class NIN(chainer.Chain):
 
     insize = 227
 
-    def __init__(self):
+    def __init__(self, label_count):
         super(NIN, self).__init__()
         conv_init = I.HeNormal()  # MSRA scaling
 
