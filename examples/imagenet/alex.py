@@ -33,6 +33,7 @@ class Alex(chainer.Chain):
         h = F.dropout(F.relu(self.fc7(h)))
         h = self.fc8(h)
 
+        # for enable to use VGG
         # loss = F.softmax_cross_entropy(h, t)
-        chainer.report({'loss': loss, 'accuracy': F.accuracy(h, t)}, self)
-        return loss
+        # chainer.report({'loss': loss, 'accuracy': F.accuracy(h, t)}, self)
+        return h
