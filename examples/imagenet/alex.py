@@ -21,7 +21,7 @@ class Alex(chainer.Chain):
             self.fc7 = L.Linear(None, 4096)
             self.fc8 = L.Linear(None, label_count)
 
-    def forward(self, x, t):
+    def forward(self, x):
         h = F.max_pooling_2d(F.local_response_normalization(
             F.relu(self.conv1(x))), 3, stride=2)
         h = F.max_pooling_2d(F.local_response_normalization(
@@ -33,6 +33,6 @@ class Alex(chainer.Chain):
         h = F.dropout(F.relu(self.fc7(h)))
         h = self.fc8(h)
 
-        loss = F.softmax_cross_entropy(h, t)
+        # loss = F.softmax_cross_entropy(h, t)
         chainer.report({'loss': loss, 'accuracy': F.accuracy(h, t)}, self)
         return loss
